@@ -144,12 +144,17 @@ extern NSString *RKStringDescribingRequestMethod(RKRequestMethod method);
 
 - (BOOL)matchesResponse:(NSHTTPURLResponse *)response
 {
-    return [self matchesResponse:response parsedArguments:nil];
+    return [self matchesResponse:response request:nil];
 }
 
-- (BOOL)matchesResponse:(NSHTTPURLResponse *)response parsedArguments:(NSDictionary **)outParsedArguments
+- (BOOL)matchesResponse:(NSHTTPURLResponse *)response request:(NSURLRequest *)request{
+    
+    return [self matchesResponse:response request:nil parsedArguments:nil];
+}
+
+- (BOOL)matchesResponse:(NSHTTPURLResponse *)response request:(NSURLRequest *)request parsedArguments:(NSDictionary **)outParsedArguments
 {
-    if (![self matchesURL:response.URL parsedArguments:outParsedArguments]) return NO;
+    if (! ([self matchesURL:response.URL parsedArguments:outParsedArguments] || [self matchesURL:request.URL])) return NO;
     
     if (self.statusCodes) {
         if (! [self.statusCodes containsIndex:response.statusCode]) {
@@ -167,7 +172,7 @@ extern NSString *RKStringDescribingRequestMethod(RKRequestMethod method);
 - (NSDictionary *)parsedArgumentsFromResponse:(NSHTTPURLResponse *)response
 {
     NSDictionary *parsedArguments = nil;
-    if ([self matchesResponse:response parsedArguments:&parsedArguments])
+    if ([self matchesResponse:response request:nil parsedArguments:&parsedArguments])
     {
         return parsedArguments;
     }

@@ -157,6 +157,7 @@
  @see `matchesURL:`
  */
 - (BOOL)matchesResponse:(NSHTTPURLResponse *)response;
+- (BOOL)matchesResponse:(NSHTTPURLResponse *)response request:(NSURLRequest *)request;
 
 /**
  Returns a dictionary of parsed arguments extracted from the URL of the given response object.
