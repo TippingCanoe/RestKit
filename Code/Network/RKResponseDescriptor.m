@@ -149,7 +149,7 @@ extern NSString *RKStringDescribingRequestMethod(RKRequestMethod method);
 
 - (BOOL)matchesResponse:(NSHTTPURLResponse *)response request:(NSURLRequest *)request{
     
-    return [self matchesResponse:response request:nil parsedArguments:nil];
+    return [self matchesResponse:response request:request parsedArguments:nil];
 }
 
 - (BOOL)matchesResponse:(NSHTTPURLResponse *)response request:(NSURLRequest *)request parsedArguments:(NSDictionary **)outParsedArguments
