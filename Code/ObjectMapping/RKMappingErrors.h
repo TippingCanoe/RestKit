@@ -18,7 +18,7 @@
 //  limitations under the License.
 //
 
-#import "RKErrors.h"
+#import <RestKit/Support/RKErrors.h>
 
 typedef UInt32 RKMappingErrorCode;
 enum {

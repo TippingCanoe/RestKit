@@ -18,7 +18,22 @@
 //  limitations under the License.
 //
 
-#import "RKLog.h"
+#import <RestKit/Support/RKLog.h>
+
+@interface RKNSLogLogger : NSObject <RKLogging>
+@end
+
+#if RKLOG_USE_NSLOGGER && __has_include("LCLNSLogger_RK.h")
+  #import "LCLNSLogger_RK.h"
+  #define RKLOG_CLASS LCLNSLogger_RK
+
+#elif __has_include(<RestKit/Support/RKLumberjackLogger.h>)
+  #import <RestKit/Support/RKLumberjackLogger.h>
+  #define RKLOG_CLASS RKLumberjackLogger
+
+#else
+  #define RKLOG_CLASS RKNSLogLogger
+#endif
 
 // Hook into Objective-C runtime to configure logging when we are loaded
 @interface RKLogInitializer : NSObject

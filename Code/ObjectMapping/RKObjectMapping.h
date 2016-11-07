@@ -18,9 +18,12 @@
 //  limitations under the License.
 //
 
-#import "RKMacros.h"
-#import "RKMapping.h"
-#import "RKValueTransformers.h"
+
+#import <RestKit/Support/RKMacros.h>
+#import <RestKit/ObjectMapping/RKMapping.h>
+
+#import <RKValueTransformers/RKValueTransformers.h>
+
 
 @class RKPropertyMapping, RKAttributeMapping, RKRelationshipMapping;
 @protocol RKValueTransforming;
